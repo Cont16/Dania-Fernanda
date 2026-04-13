@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Dania Fernanda 💛</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Georgia', serif;
+  min-height: 100vh;
+  transition: background 1s ease;
+  background: linear-gradient(160deg, #1a3a1a, #2d5a1b);
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px; overflow-x: hidden;
+}
+#app {
+  width: 100%; max-width: 440px;
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 0; padding: 10px 0 20px;
+}
+.card {
+  background: linear-gradient(160deg,#fff8f0,#fff0f5);
+  border-radius: 28px; padding: 26px 22px 30px;
+  width: 100%; text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+  border: 3px solid rgba(255,200,120,0.35);
+  position: relative; overflow: hidden;
+}
+.titulo { font-size: 2em; color: #b05020; font-weight: bold; letter-spacing: 2px; animation: brillar 2.5s infinite; }
+@keyframes brillar { 0%,100%{text-shadow:0 0 10px rgba(200,100,30,.4)} 50%{text-shadow:0 0 28px rgba(200,100,30,.9)} }
+.subtitulo { font-size:.95em; color:#999; font-style:italic; margin-bottom:18px; }
+
+.escena {
+  border-radius: 18px; height: 160px; position: relative; overflow: hidden; margin-bottom: 18px;
+  background: linear-gradient(180deg,#87CEEB 0%,#87CEEB 52%,#5a8a3a 52%,#3d6b20 100%);
+  border: 2px solid rgba(80,140,40,.4); cursor: pointer;
+  transition: box-shadow 0.3s;
+}
+.escena:hover { box-shadow: 0 0 0 3px #e67e22; }
+.sol { position:absolute; top:10px; right:18px; font-size:2em; animation: girarSol 10s linear infinite; }
+@keyframes girarSol { to{ transform:rotate(360deg); } }
+.nube { position:absolute; font-size:1.8em; top:16px; animation: moverNube 12s linear infinite; }
+.nube1{left:-60px;} .nube2{left:-60px;top:26px;font-size:1.3em;animation-delay:6s;}
+@keyframes moverNube { 0%{left:-60px} 100%{left:110%} }
+.animal-escena {
+  position:absolute; bottom:30px; font-size:2.4em; cursor:pointer;
+  transition: transform 0.15s; animation: bobbing 2s ease-in-out infinite;
+  filter: drop-shadow(0 3px 3px rgba(0,0,0,.25));
+  user-select:none;
+}
+.animal-escena:hover { transform: scale(1.4) translateY(-8px) !important; }
+@keyframes bobbing { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+.pasto { position:absolute; bottom:0; width:100%; height:32px; background:#3d6b20; border-radius:0 0 16px 16px; }
+
+.hint-tap {
+  position:absolute; top:8px; left:10px; background:rgba(255,255,255,.85); border-radius:10px;
+  padding:4px 10px; font-size:.78em; color:#b05020; font-weight:bold; animation: pulsarHint 1.5s infinite;
+}
+@keyframes pulsarHint { 0%,100%{opacity:1} 50%{opacity:.5} }
+
+.pregunta-box {
+  background: linear-gradient(135deg,#fff3e0,#ffe0b2);
+  border-radius:18px; padding:16px 16px 14px; margin-bottom:14px;
+  border-left:5px solid #e67e22; text-align:left;
+  transition: opacity .35s;
+}
+.pregunta-emoji { font-size:1.8em; margin-bottom:6px; display:block; text-align:center; }
+.pregunta-texto { font-size:1em; color:#5a3010; line-height:1.55; font-style:italic; margin-bottom:4px; text-align:center; }
+.pregunta-firma { font-size:.82em; color:#b06030; font-weight:bold; margin-top:6px; text-align:center; }
+
+.quiz-titulo { font-size:.95em; color:#7a4010; font-weight:bold; margin:10px 0 8px; }
+.opciones { display:flex; flex-direction:column; gap:8px; margin-bottom:12px; }
+.opcion {
+  border:2px solid #e67e22; background:#fff; color:#7a4010;
+  border-radius:40px; padding:10px 18px; font-size:.95em; font-family:'Georgia',serif;
+  cursor:pointer; transition: all .25s; text-align:left;
+}
+.opcion:hover { background:#fff3e0; transform:scale(1.03); }
+.opcion.correcta { background:#d4edda; border-color:#27ae60; color:#145a32; }
+.opcion.incorrecta { animation: temblar .5s; border-color:#e74c3c; background:#fdecea; }
+@keyframes temblar { 0%,100%{transform:translateX(0)} 20%,60%{transform:translateX(-8px)} 40%,80%{transform:translateX(8px)} }
+.opcion.crecer { transform: scale(1.12); font-weight:bold; box-shadow:0 0 0 3px #e67e22; }
+
+.btn-sig {
+  background: linear-gradient(135deg,#e67e22,#d35400); color:#fff;
+  border:none; border-radius:50px; padding:13px 32px;
+  font-size:1.05em; font-family:'Georgia',serif; cursor:pointer;
+  box-shadow:0 6px 20px rgba(200,80,0,.4); transition:all .2s;
+  width:100%; margin-top:4px; display:none;
+}
+.btn-sig:hover { transform:scale(1.04); }
+.btn-sig:active { transform:scale(0.97); }
+
+.progreso { display:flex; justify-content:center; gap:7px; margin-top:10px; }
+.punto { width:10px; height:10px; border-radius:50%; background:#ddd; transition:all .3s; }
+.punto.activo { background:#e67e22; transform:scale(1.3); }
+
+.pieza {
+  position:absolute; width:9px; height:9px; border-radius:50%;
+  pointer-events:none; animation:caer 1.6s ease-out forwards; z-index:200;
+}
+@keyframes caer { 0%{opacity:1;transform:translateY(0) rotate(0)} 100%{opacity:0;transform:translateY(130px) rotate(360deg) translateX(var(--dx))} }
+
+.final { animation:aparecerFinal .8s ease; }
+@keyframes aparecerFinal { 0%{opacity:0;transform:scale(.7)} 60%{transform:scale(1.05)} 100%{opacity:1;transform:scale(1)} }
+.corazon-big { font-size:5em; animation:latir 1.2s infinite; display:inline-block; }
+@keyframes latir { 0%,100%{transform:scale(1)} 50%{transform:scale(1.28)} }
+.btn-reiniciar {
+  background:transparent; border:2px solid #e67e22; color:#e67e22;
+  border-radius:50px; padding:9px 26px; font-size:.93em;
+  font-family:'Georgia',serif; cursor:pointer; margin-top:12px; transition:all .2s;
+}
+.btn-reiniciar:hover { background:#e67e22; color:#fff; }
+
+.badge {
+  position:absolute; top:10px; right:10px; border-radius:20px;
+  padding:5px 12px; font-size:.82em; font-weight:bold;
+  animation:aparecerBadge .4s ease; z-index:50;
+}
+@keyframes aparecerBadge { 0%{opacity:0;transform:scale(.5)} 100%{opacity:1;transform:scale(1)} }
+.badge.bien { background:#d4edda; color:#145a32; }
+.badge.mal { background:#fdecea; color:#a93226; }
+</style>
+</head>
+<body>
+<div id="app">
+<div class="card" id="card">
+  <div class="titulo">Dania Fernanda</div>
+  <div class="subtitulo">Martín te preparó algo especial 🌿</div>
+
+  <div class="escena" id="escena">
+    <div class="hint-tap">👆 ¡Toca un animalito!</div>
+    <div class="sol">☀️</div>
+    <div class="nube nube1">☁️</div>
+    <div class="nube nube2">☁️</div>
+    <div class="animal-escena" style="left:8%" id="a-gallina">🐔</div>
+    <div class="animal-escena" style="left:30%;animation-delay:.4s" id="a-perro">🐕</div>
+    <div class="animal-escena" style="left:52%;animation-delay:.8s;font-size:2.2em" id="a-cabra">🐐</div>
+    <div class="animal-escena" style="left:72%;font-size:3em;animation-delay:1.2s" id="a-caballo">🐴</div>
+    <div class="pasto"></div>
+  </div>
+
+  <div class="pregunta-box" id="datoBox">
+    <span class="pregunta-emoji">👆</span>
+    <div class="pregunta-texto">Toca cualquier animalito de arriba para comenzar la aventura...</div>
+    <div class="pregunta-firma"></div>
+  </div>
+
+  <div id="quiz-area"></div>
+
+  <button class="btn-sig" id="btnSig" onclick="siguiente()">✨ Siguiente</button>
+
+  <div class="progreso" id="progreso"></div>
+</div>
+</div>
+
+<script>
+const pasos = [
+  {
+    emoji:'🐔', animal:'a-gallina',
+    texto:'¿Sabías que tus gallinas se comunican con sonidos diferentes para avisar sobre peligros o comida? Las computadoras también se mandan "mensajitos" entre sí todo el tiempo. ¡Eso se llama una red!',
+    firma:'— Martín estudia cómo funcionan esas redes 💻',
+    fondo:'linear-gradient(160deg,#1a3a1a,#2d5a1b)',
+    quiz:{
+      pregunta:'¿Para qué crees que sirve una red de computadoras?',
+      opciones:['Para que las computadoras se comuniquen','Para hacer más ruido que las gallinas','Para guardar huevos digitales'],
+      correcta:0
+    }
+  },
+  {
+    emoji:'🐕', animal:'a-perro',
+    texto:'Tu perro reconoce tus pasos y sabe que eres tú antes de verte. Las computadoras también aprenden a reconocer cosas: fotos, voces, huellas... ¡como tu perrito pero en digital!',
+    firma:'— Martín programa esa inteligencia 🎯',
+    fondo:'linear-gradient(160deg,#1a1a3a,#2b2d7a)',
+    quiz:{
+      pregunta:'¿Cómo se llama cuando una computadora "aprende" a reconocer cosas?',
+      opciones:['Programación inteligente','Ladrido digital','Redes de hueso'],
+      correcta:0
+    }
+  },
+  {
+    emoji:'🐐', animal:'a-cabra',
+    texto:'En tu terrenito cada cabrita sabe cuál es su espacio. Las computadoras guardan la información de cada persona en su propio espacio. ¡Eso se llama base de datos — como una libreta que nunca olvida nada!',
+    firma:'— Martín cuida esas libretas digitales 📒',
+    fondo:'linear-gradient(160deg,#3a1a10,#7a3a10)',
+    quiz:{
+      pregunta:'¿Qué es una base de datos?',
+      opciones:['Una libreta digital que nunca olvida','Un terreno para cabritas','Un tipo de queso digital'],
+      correcta:0
+    }
+  },
+  {
+    emoji:'🐴', animal:'a-caballo',
+    texto:'Tu caballito necesita que cuides su espacio, que nadie malo entre al corral. Las computadoras también necesitan protección. Martín aprende a ser el guardián que no deja entrar a los malos digitales. ¡Eso se llama Ciberseguridad!',
+    firma:'— Martín es el guardián digital 🛡️',
+    fondo:'linear-gradient(160deg,#2a0a2a,#6a1a6a)',
+    quiz:{
+      pregunta:'¿Qué protege la Ciberseguridad?',
+      opciones:['Las computadoras de los malos','El corral del caballito','Las gallinas de la lluvia'],
+      correcta:0
+    }
+  },
+  {
+    emoji:'🌸', animal:null,
+    texto:'Cuidar tu terreno tiene orden: regar, alimentar, limpiar... paso a paso. Martín hace lo mismo con sus programas: cada instrucción lleva a la siguiente. A eso le llaman Ingeniería de Software — orden y cuidado, igual que tú.',
+    firma:'— Por eso admira cómo cuidas tu terrenito 💛',
+    fondo:'linear-gradient(160deg,#1a2a3a,#1a4a6a)',
+    quiz:{
+      pregunta:'¿Con qué se parece la Ingeniería de Software a tu terreno?',
+      opciones:['Los dos necesitan orden y cuidado','Los dos tienen caballos','Los dos huelen a pasto'],
+      correcta:0
+    }
+  }
+];
+
+let paso = -1;
+let respondido = false;
+let incorrectos = 0;
+let iniciado = false;
+
+function fondoActual(f){ document.body.style.background = f; }
+
+function confettiEn(el, n){
+  n = n || 14;
+  var colors=['#e67e22','#f39c12','#e74c3c','#27ae60','#3498db','#ff69b4','#9b59b6'];
+  var card = document.getElementById('card');
+  var rect = el.getBoundingClientRect();
+  var cr = card.getBoundingClientRect();
+  for(var i=0;i<n;i++){
+    var p=document.createElement('div');
+    p.className='pieza';
+    p.style.background=colors[Math.floor(Math.random()*colors.length)];
+    p.style.left=(rect.left-cr.left+rect.width/2)+'px';
+    p.style.top=(rect.top-cr.top+10)+'px';
+    p.style.setProperty('--dx',(Math.random()*120-60)+'px');
+    p.style.animationDuration=(Math.random()*.7+1.1)+'s';
+    card.appendChild(p);
+    setTimeout(function(){ p.remove(); },2000);
+  }
+}
+
+function bounce(el){
+  el.style.transition='transform .15s';
+  el.style.transform='scale(1.5) translateY(-14px) rotate(10deg)';
+  confettiEn(el, 12);
+  setTimeout(function(){ el.style.transform=''; },500);
+}
+
+function mostrarBadge(bien){
+  var viejo = document.querySelector('.badge');
+  if(viejo) viejo.remove();
+  var b=document.createElement('div');
+  b.className='badge '+(bien?'bien':'mal');
+  b.textContent=bien?'✅ ¡Muy bien!':'❌ ¡Intenta otra!';
+  document.getElementById('card').appendChild(b);
+  setTimeout(function(){ b.remove(); },2000);
+}
+
+function mostrarPaso(i){
+  var d=pasos[i];
+  respondido=false; incorrectos=0;
+  fondoActual(d.fondo);
+
+  if(d.animal){
+    var el=document.getElementById(d.animal);
+    if(el) bounce(el);
+  }
+
+  var box=document.getElementById('datoBox');
+  box.style.opacity=0;
+  setTimeout(function(){
+    box.innerHTML='<span class="pregunta-emoji">'+d.emoji+'</span>'
+      +'<div class="pregunta-texto">'+d.texto+'</div>'
+      +'<div class="pregunta-firma">'+d.firma+'</div>';
+    box.style.transition='opacity .4s'; box.style.opacity=1;
+  },200);
+
+  var qa=document.getElementById('quiz-area');
+  qa.innerHTML='';
+  if(d.quiz){
+    var qt=document.createElement('div');
+    qt.className='quiz-titulo';
+    qt.textContent='🌟 '+d.quiz.pregunta;
+    var ops=document.createElement('div');
+    ops.className='opciones';
+    d.quiz.opciones.forEach(function(op,idx){
+      var btn=document.createElement('button');
+      btn.className='opcion';
+      btn.textContent=(idx===0?'🅰️ ':idx===1?'🅱️ ':'🅾️ ')+op;
+      btn.id='op-'+idx;
+      (function(i, b, c){ btn.onclick=function(){ responder(i, c, b); }; })(idx, btn, d.quiz.correcta);
+      ops.appendChild(btn);
+    });
+    qa.appendChild(qt); qa.appendChild(ops);
+  }
+
+  document.getElementById('btnSig').style.display='none';
+  actualizarProgreso(i);
+}
+
+function responder(idx, correcta, btn){
+  if(respondido) return;
+  if(idx===correcta){
+    respondido=true;
+    btn.classList.add('correcta');
+    mostrarBadge(true);
+    confettiEn(btn, 18);
+    document.body.style.background='linear-gradient(160deg,#0d3b0d,#1a6b1a)';
+    setTimeout(function(){ fondoActual(pasos[paso].fondo); },800);
+    setTimeout(function(){ document.getElementById('btnSig').style.display='block'; }, 600);
+  } else {
+    incorrectos++;
+    btn.classList.add('incorrecta');
+    mostrarBadge(false);
+    document.body.style.background='linear-gradient(160deg,#3b0d0d,#6b1a1a)';
+    setTimeout(function(){ fondoActual(pasos[paso].fondo); },600);
+    setTimeout(function(){ btn.classList.remove('incorrecta'); }, 600);
+    var btnCorrecto=document.getElementById('op-'+correcta);
+    if(btnCorrecto){
+      var escala=1+incorrectos*0.08;
+      btnCorrecto.style.transform='scale('+Math.min(escala,1.35)+')';
+      btnCorrecto.style.boxShadow='0 0 0 '+(incorrectos*2)+'px rgba(231,76,60,.4)';
+      btnCorrecto.classList.add('crecer');
+    }
+  }
+}
+
+function siguiente(){
+  paso++;
+  if(paso<pasos.length){ mostrarPaso(paso); }
+  else { mostrarFinal(); }
+}
+
+function actualizarProgreso(i){
+  var c=document.getElementById('progreso');
+  c.innerHTML='';
+  pasos.forEach(function(_,j){
+    var p=document.createElement('div');
+    p.className='punto'+(j<=i?' activo':'');
+    c.appendChild(p);
+  });
+}
+
+function mostrarFinal(){
+  var card=document.getElementById('card');
+  for(var i=0;i<40;i++){
+    (function(delay){
+      setTimeout(function(){
+        var d=document.createElement('div');
+        d.className='pieza';
+        var cls=['#e67e22','#f39c12','#e74c3c','#27ae60','#ff69b4','#9b59b6','#3498db'];
+        d.style.background=cls[Math.floor(Math.random()*cls.length)];
+        d.style.left=Math.random()*400+'px';
+        d.style.top='10px';
+        d.style.setProperty('--dx',(Math.random()*140-70)+'px');
+        d.style.animationDuration=(Math.random()*.8+1.2)+'s';
+        card.appendChild(d);
+        setTimeout(function(){ d.remove(); },2200);
+      }, delay);
+    })(i*55);
+  }
+  document.body.style.background='linear-gradient(160deg,#4a1a4a,#8a2a6a)';
+  card.innerHTML='<div class="final">'
+    +'<div style="font-size:.9em;color:#888;font-style:italic;margin-bottom:14px">De parte de Martín</div>'
+    +'<div class="corazon-big">💛</div>'
+    +'<div style="font-size:1.7em;color:#b05020;font-weight:bold;margin:14px 0 8px;letter-spacing:1px">Dania Fernanda</div>'
+    +'<div style="font-size:1em;color:#5a3010;line-height:1.85;font-style:italic;margin:0 8px">'
+    +'Quería que entendieras un poquito de mi mundo...<br>'
+    +'y que supieras que pensé en ti mientras lo hacía.<br><br>'
+    +'<strong style="color:#d35400;font-size:1.1em">'
+    +'Así como tú cuidas a tu caballito con amor,<br>'
+    +'yo cuido cada línea de código pensando en ti.'
+    +'</strong>'
+    +'</div>'
+    +'<div style="margin:20px 0;font-size:2.5em;letter-spacing:10px">🐴💛</div>'
+    +'<div style="font-size:.9em;color:#b06030;font-style:italic">— Martín Alexander</div>'
+    +'<button class="btn-reiniciar" onclick="location.reload()">🔄 Ver de nuevo</button>'
+    +'</div>';
+}
+
+var animales = ['a-gallina','a-perro','a-cabra','a-caballo'];
+animales.forEach(function(id){
+  document.getElementById(id).addEventListener('click', function(){
+    bounce(this);
+    if(!iniciado){
+      iniciado = true;
+      var self = this;
+      setTimeout(function(){ siguiente(); }, 300);
+    }
+  });
+});
+
+document.getElementById('escena').addEventListener('click', function(e){
+  if(!iniciado && e.target === this){
+    iniciado = true;
+    setTimeout(function(){ siguiente(); }, 200);
+  }
+});
+</script>
+</body>
+</html>
